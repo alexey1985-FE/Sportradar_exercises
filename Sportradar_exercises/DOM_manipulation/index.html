@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom manipulatiton</title>
+  </head>
+
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      border: 1px solid #000;
+      margin: 1.2rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+  </style>
+
+
+  <body>
+    <div id="width-box" class="box"></div>
+    <div id="height-box" class="box"></div>
+
+    <script>
+      const widthBox = document.querySelector('#width-box');
+      const heightBox = document.querySelector('#height-box');
+
+      widthBox.addEventListener('contextmenu', e => {
+        e.preventDefault();
+        alert('Right click disabled');
+      });
+
+      heightBox.addEventListener('mousedown', e => {
+        if (e.button === 0) {
+          e.preventDefault();
+          alert('Left click disabled');
+        }
+      });
+
+      function updateSize() {
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+
+        widthBox.innerHTML = `Width: ${windowWidth}`;
+        heightBox.innerHTML = `Height: ${windowHeight}`;
+      }
+
+      window.addEventListener('resize', updateSize);
+
+      updateSize();
+    </script>
+  </body>
+</html>
